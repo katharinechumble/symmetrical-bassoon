@@ -43,65 +43,65 @@ function getQuestion() {
 }
 
 function answerClick() {
-    if (this.value !== questions[questionList].Answer) {
-        time -= 15;
-        if (time < 0) {
-            time = 0;
-        }
-
-        timerEl.textContent = time;
-        correctAnswerEl.textContent = "Incorrect";
-        correctAnswerEl.style.color = "red";
-    } else {
-        correctAnswerEl.textContent = "Correct!";
-        correctAnswerEl.style.color = "green";
+  if (this.value !== questions[questionList].Answer) {
+    time -= 15;
+    if (time < 0) {
+      time = 0;
     }
 
-    questionList++;
+    timerEl.textContent = time;
+    correctAnswerEl.textContent = "Incorrect";
+    correctAnswerEl.style.color = "red";
+  } else {
+    correctAnswerEl.textContent = "Correct!";
+    correctAnswerEl.style.color = "green";
+  }
 
-    if (questionList === questions.length) {
-        quizEnd();
-    } else {
-        getQuestion();
-    }
+  questionList++;
+
+  if (questionList === questions.length) {
+    quizEnd();
+  } else {
+    getQuestion();
+  }
 }
 
 function quizEnd() {
-    clearInterval(timerId);
-    var quizEndEl = document.getElementById("quizEndScreen");
+  clearInterval(timerId);
+  var quizEndEl = document.getElementById("quizEndScreen");
 
-    quizEndScreen.removeAttribute("class");
-    var highScoreEl = document.getElementById("high-score");
-    highScoreEl.textContent = time;
+  quizEndScreen.removeAttribute("class");
+  var highScoreEl = document.getElementById("high-score");
+  highScoreEl.textContent = time;
 
-    questionsEl.setAttribute("class", "hide");
+  questionsEl.setAttribute("class", "hide");
 }
 
 function clockTick() {
-    time--;
-    timerEl.textContent = time;
+  time--;
+  timerEl.textContent = time;
 
-    if (time <= 0) {
-        quizEnd();
-    }
+  if (time <= 0) {
+    quizEnd();
+  }
 }
 
 function saveScores() {
-    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+  var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
-    var newScore = {
-        score: time
-    };
-    highscores.push(newScore);
-    window.localStorage.setItem("highscores", JSON.stringify(highscores));
+  var newScore = {
+    score: time,
+  };
+  highscores.push(newScore);
+  window.localStorage.setItem("highscores", JSON.stringify(highscores));
 
-    window.location.href = "scorecard.html";
+  window.location.href = "scorecard.html";
 }
 
 function getScores(event) {
-    if (event.key === "Enter") {
-        saveScores();
-    }
+  if (event.key === "Enter") {
+    saveScores();
+  }
 }
 
 getScoresBtn.onclick = saveScores;
