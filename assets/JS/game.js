@@ -1,16 +1,16 @@
 var timerEl = document.querySelector("#timer");
 var startBtn = document.querySelector("#startBtn");
-var getScoresBtn = document.querySelector("getScoresBtn");
+var getScoresBtn = document.querySelector("#getScoresBtn");
 var choicesEl = document.querySelector("#questionAnswers");
-var questionsEl = document.querySelector("#questionCard");
+var questionsEl = document.querySelector("#questions");
 var correctAnswerEl = document.querySelector("#correctAnswer");
 
 var currentQuestion = 0;
-var time = questions.length * 15;
+var time = questionList.length * 15;
 var timerId;
 
 function startQuiz() {
-  var introScreenEl = document.getElementById("#introScreen");
+  var introScreenEl = document.getElementById("introScreen");
   introScreenEl.setAttribute("class", "hide");
 
   questionsEl.removeAttribute("class");
@@ -25,7 +25,7 @@ function getQuestion() {
   var currentQuestion = questions[questionList];
 
   var questionTextEl = document.getElementById("questionPrompt");
-  questionTextEl.textContent = currentQuestion.questionText;
+  questionTextEl.textContent = currentQuestion.questions;
 
   choicesEl.innerHTML = "";
 
