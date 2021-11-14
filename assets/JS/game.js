@@ -6,7 +6,7 @@ var questionsEl = document.querySelector("#questions");
 var correctAnswerEl = document.querySelector("#correctAnswer");
 
 var currentQuestion = 0;
-var time = questionList.length * 15;
+var time = questionList.length * 10;
 var timerId;
 
 function startQuiz() {
@@ -18,23 +18,28 @@ function startQuiz() {
   timerId = setInterval(clockTick, 1000);
   timerEl.textContent = time;
 
-  getQuestion();
+  // getQuestion();
+  console.log(questionList);
 }
 
 function getQuestion() {
+  var questions = [questionList.question];
+  var options = [questionList.options];
+  var currentOption = options[questionList];
   var currentQuestion = questions[questionList];
 
   var questionTextEl = document.getElementById("questionPrompt");
-  questionTextEl.textContent = currentQuestion.questions;
+  questionTextEl.textContent = currentQuestion;
 
   choicesEl.innerHTML = "";
 
-  currentQuestion.options.forEach(function (option, i) {
+  currentQuestion.options.forEach(function (option) {
+    console.log(option);
     var optionButton = document.createElement("button");
-    optionButton.setAttribute("class", "option");
-    optionButton.setAttribute("value", option);
+    optionButton.setAttribute("class", "options");
+    optionButton.setAttribute("value", currentOption);
 
-    optionButton.textContent = i + 1 + ". " + option;
+    optionButton.textContent = i + 1 + ". " + [option];
 
     optionButton.onclick = answerClick;
 
@@ -44,7 +49,7 @@ function getQuestion() {
 
 function answerClick() {
   if (this.value !== questions[questionList].Answer) {
-    time -= 15;
+    time -= 10;
     if (time < 0) {
       time = 0;
     }
@@ -70,7 +75,7 @@ function quizEnd() {
   clearInterval(timerId);
   var quizEndEl = document.getElementById("quizEndScreen");
 
-  quizEndScreen.removeAttribute("class");
+  quizEndEl.removeAttribute("class");
   var highScoreEl = document.getElementById("high-score");
   highScoreEl.textContent = time;
 
