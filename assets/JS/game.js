@@ -4,10 +4,60 @@ var getScoresBtn = document.querySelector("#getScoresBtn");
 var choicesEl = document.querySelector("#questionAnswers");
 var questionsEl = document.querySelector("#questions");
 var correctAnswerEl = document.querySelector("#correctAnswer");
+var questionCounter = 0;
+
+var questionList = [
+  {
+    question: "What is NOT part of the CRUD method?",
+    options: ["Create", "Delete", "Update", "Restore"],
+    Answer: "Restore",
+  },
+  {
+    question: "What 3 languages make up most websites?",
+    options: [
+      "HTML, Java, CSS",
+      "Bootstrap, JQuery, Handlebars",
+      "HTML, CSS, Javascript",
+      "Javascript, SQL, Node",
+    ],
+    Answer: "HTML, CSS, Javascript",
+  },
+  {
+    question: "What is JQuery?",
+    options: [
+      "A Web API library for Javascript",
+      "A game show",
+      "Javascript documentation",
+      "Some web developer's rap name",
+    ],
+    Answer: "A Web API library for Javascript",
+  },
+  {
+    question: "Where can we save user data from a website?",
+    options: ["Local Storage", "Cookies", "Webtokens", "All of the Above"],
+    Answer: "All of the Above",
+  },
+  {
+    question: "Where is SQL used?",
+    options: [
+      "Front-end",
+      "Back-end",
+      "Middleware",
+      "Independent of the web app",
+    ],
+    Answer: "Back-end",
+  },
+  {
+    question: "Which of these does NOT declare a variable?",
+    options: ["this", "const", "var", "let"],
+    Answer: "this",
+  },
+];
 
 var currentQuestion = 0;
 var time = questionList.length * 10;
 var timerId;
+
 
 function startQuiz() {
   var introScreenEl = document.getElementById("introScreen");
@@ -18,28 +68,37 @@ function startQuiz() {
   timerId = setInterval(clockTick, 1000);
   timerEl.textContent = time;
 
-  // getQuestion();
-  console.log(questionList);
+  console.log(questionList[0].question);
+  console.log(questionList[0].options);
+
+  getQuestion();
 }
 
 function getQuestion() {
-  var questions = [questionList.question];
-  var options = [questionList.options];
-  var currentOption = options[questionList];
-  var currentQuestion = questions[questionList];
+  var questions = questionList[questionCounter].question;
+  var options = questionList[questionCounter].options;
+  console.log(options);
+  // var questionCounter = questionList++;
+  var currentOption = options;
+  var currentQuestion = questions;
+
+  var questions = questionList.questions;
+
+  // console.log(questions);
 
   var questionTextEl = document.getElementById("questionPrompt");
   questionTextEl.textContent = currentQuestion;
 
   choicesEl.innerHTML = "";
 
-  currentQuestion.options.forEach(function (option) {
+
+  options.forEach(function (option, i) {
     console.log(option);
     var optionButton = document.createElement("button");
     optionButton.setAttribute("class", "options");
     optionButton.setAttribute("value", currentOption);
 
-    optionButton.textContent = i + 1 + ". " + [option];
+    optionButton.textContent = i + 1 + ". " + option;
 
     optionButton.onclick = answerClick;
 
@@ -48,7 +107,11 @@ function getQuestion() {
 }
 
 function answerClick() {
-  if (this.value !== questions[questionList].Answer) {
+  // console.log(questions);
+  var answer = questionList[questionCounter].Answer;
+  // console.log(answer);
+  if (answer !== questionList[questionCounter].Answer) {
+    
     time -= 10;
     if (time < 0) {
       time = 0;
@@ -62,12 +125,13 @@ function answerClick() {
     correctAnswerEl.style.color = "green";
   }
 
-  questionList++;
-
-  if (questionList === questions.length) {
+  if (questionList === questionCounter) {
     quizEnd();
   } else {
-    getQuestion();
+    choicesEl.innerHTML = "";
+    questionCounter++;
+    console.log(questionCounter);
+    getQuestion(questionCounter);
   }
 }
 
