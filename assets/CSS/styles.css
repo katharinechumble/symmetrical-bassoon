@@ -26,8 +26,8 @@ h1 {
 
 .introScreen {
     align-items: center;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 150px;
+    margin-right: 150px;
 }
 
 .card {
@@ -35,6 +35,10 @@ h1 {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  margin-left: 500px;
+  margin-right: 500px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .card-header {
@@ -47,6 +51,7 @@ h1 {
 
 button {
   text-decoration: none;
+  border: none;
   background-color: var(--primarycolor);
   color: var(--texthighlight);
   padding: 5px;
@@ -68,4 +73,12 @@ button {
 
 .quizEndScreen {
     text-align: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 500px;
+    margin-right: 500px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
