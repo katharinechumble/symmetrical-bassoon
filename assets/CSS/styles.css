@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primarycolor: purple;
+  --textcolor: black;
+  --texthighlight: white;
+}
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: rgb(250, 251, 252);
+  color: var(--textcolor);
+}
+h1 {
+  text-align: center;
+  font-weight: bold;
+}
+
+.introText {
+  text-align: center;
+}
+
+.introScreen {
+    align-items: center;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card-header {
+  background-color: var(--primarycolor);
+  color: var(--texthighlight);
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+}
+
+button {
+  text-decoration: none;
+  background-color: var(--primarycolor);
+  color: var(--texthighlight);
+  padding: 5px;
+  border-radius: 7px;
+}
+
+.startBtn {
+  text-decoration: none;
+  background-color: var(--primarycolor);
+  color: var(--texthighlight);
+  padding: 5px;
+  border-radius: 7px;
+  align-items: center;
+}
+
+.highscoreBtn {
+    align-items: center;
+}
+
+.quizEndScreen {
+    text-align: center;
+}

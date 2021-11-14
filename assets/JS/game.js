@@ -58,7 +58,6 @@ var currentQuestion = 0;
 var time = questionList.length * 10;
 var timerId;
 
-
 function startQuiz() {
   var introScreenEl = document.getElementById("introScreen");
   introScreenEl.setAttribute("class", "hide");
@@ -91,7 +90,6 @@ function getQuestion() {
 
   choicesEl.innerHTML = "";
 
-
   options.forEach(function (option, i) {
     console.log(option);
     var optionButton = document.createElement("button");
@@ -111,7 +109,6 @@ function answerClick() {
   var answer = questionList[questionCounter].Answer;
   // console.log(answer);
   if (answer !== questionList[questionCounter].Answer) {
-    
     time -= 10;
     if (time < 0) {
       time = 0;
